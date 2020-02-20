@@ -19,10 +19,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // saveClicked ile kaydettik ama app açılınca ilk verileri kayıtlı getiriyoruz
         let storedName = UserDefaults.standard.object(forKey: "name")
         let storedBirthday = UserDefaults.standard.object(forKey: "birthday")
         
-        // casting as? as!
+        // casting as? as! force casting
+        
         if let newName = storedName as? String{
             nameLabel.text = "Name : \(newName)"
         }
@@ -32,8 +34,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func saveClicked(_ sender: Any) {
+        // küçük şeyleri kaydetmek için kullanılan sınıf UserDefaults
+        
         UserDefaults.standard.set(nameText.text, forKey: "name")
         UserDefaults.standard.set(birthdayText.text, forKey: "birthday")
+       // UserDefaults.standard.synchronize()
         
         nameLabel.text = "Name : \(nameText.text!)"
         birtdayLabel.text = "Birthday : \(birthdayText.text!)"
@@ -53,10 +58,10 @@ class ViewController: UIViewController {
             UserDefaults.standard.removeObject(forKey: "birthday")
             birtdayLabel.text = "Birthday : "
         }
-        
-        
-        
+    
     }
     
 }
+
+
 
